@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="separator" class="border-dashed border-2 border-red-300 mx-4">
+</div>
+<!--
+<a th:fragment="menu-item(title, link)"
+   th:text="${title}"
+   th:href="${link}"
+   class="flex items-center px-2 py-2 text-base leading-6 font-medium text-gray-900">
+</a>
+-->
+<a th:fragment="menu-item(title, link, svgContents)"
+   th:href="${link}"
+   class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+    <svg th:replace="${svgContents}"></svg>
+    [[${title}]]
+</a>
+</body>
+</html>
