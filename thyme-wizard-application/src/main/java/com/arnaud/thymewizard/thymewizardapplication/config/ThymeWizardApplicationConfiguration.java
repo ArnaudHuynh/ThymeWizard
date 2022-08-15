@@ -1,4 +1,4 @@
-package com.tamingthymeleaf.application;
+package com.arnaud.thymewizard.thymewizardapplication.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,7 +1,8 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
-    content: ['./src/main/resources/templates/**/*.{html, svg}'],
+    content: ['./src/main/resources/templates/**/*.html',
+              './src/main/resources/templates/**/*.svg'],
     theme: {
         extend: {
             fontFamily: {

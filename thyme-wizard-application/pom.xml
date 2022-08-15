@@ -61,6 +61,10 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>nz.net.ultraq.thymeleaf</groupId>
+			<artifactId>thymeleaf-layout-dialect</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -119,6 +123,25 @@
 			<plugin>
 				<groupId>com.github.eirslett</groupId>
 				<artifactId>frontend-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.fizzed</groupId>
+				<artifactId>fizzed-watcher-maven-plugin</artifactId>
+				<version>1.0.6</version>
+				<configuration>
+					<watches>
+						<watch>
+							<directory>src/main</directory>
+							<exclude>*.css</exclude>
+							<exclude>*.js</exclude>
+							<exclude>*.svg</exclude>
+						</watch>
+					</watches>
+					<goals>
+						<goal>compile</goal>
+						<goal>process-classes</goal>
+					</goals>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
