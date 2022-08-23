@@ -13,6 +13,6 @@ public class RootController {
 
     @GetMapping
     public String index(Model model) {
-        return "index";
+        return "redirect:/users";
     }
 }
