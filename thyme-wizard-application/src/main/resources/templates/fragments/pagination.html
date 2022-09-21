@@ -65,17 +65,17 @@
         <!-- end::pagination-previous[] -->
 
         <!-- tag::pagenumbers[] -->
-<!--        <th:block-->
-<!--                th:with="startPage=${T(Math).max(1, page.getNumber() - 1)},endPage=${T(Math).min(startPage + 4, page.getTotalPages())}">-->
-<!--          <a th:each="pageNumber : ${#numbers.sequence(startPage, endPage)}"-->
-<!--             th:id="${'pagination-page-' + pageNumber}"-->
-<!--             th:href="${urlBuilder.fromCurrentRequest().replaceQueryParam('page', pageNumber - 1).toUriString()}"-->
-<!--             class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"-->
-<!--             th:classappend="${page.number == pageNumber - 1?'font-bold':''}"-->
-<!--          >-->
-<!--            <span th:text="${pageNumber}" th:remove="tag"></span>-->
-<!--          </a>-->
-<!--        </th:block>-->
+        <th:block
+                th:with="startPage=${T(java.lang.Math).max(1, page.getNumber() - 1)},endPage=${T(java.lang.Math).min(startPage + 4, page.getTotalPages())}">
+          <a th:each="pageNumber : ${#numbers.sequence(startPage, endPage)}"
+             th:id="${'pagination-page-' + pageNumber}"
+             th:href="${urlBuilder.fromCurrentRequest().replaceQueryParam('page', pageNumber - 1).toUriString()}"
+             class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
+             th:classappend="${page.number == pageNumber - 1?'font-bold':''}"
+          >
+            <span th:text="${pageNumber}" th:remove="tag"></span>
+          </a>
+        </th:block>
         <!-- end::pagenumbers[] -->
 
         <a id="pagination-next"
