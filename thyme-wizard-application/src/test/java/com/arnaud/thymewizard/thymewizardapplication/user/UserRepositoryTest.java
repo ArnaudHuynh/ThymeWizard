@@ -2,6 +2,7 @@ package com.arnaud.thymewizard.thymewizardapplication.user;
 
 import io.github.wimdeblauwe.jpearl.InMemoryUniqueIdGenerator;
 import io.github.wimdeblauwe.jpearl.UniqueIdGenerator;
+import org.hibernate.type.BinaryType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.nio.ByteBuffer;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.UUID;
@@ -44,6 +46,20 @@ class UserRepositoryTest {
     }
 
 
+
+    public static byte[] convertUUIDToBytes(UUID uuid) {
+        ByteBuffer bb = ByteBuffer.wrap(new byte[16]);
+        bb.putLong(uuid.getMostSignificantBits());
+        bb.putLong(uuid.getLeastSignificantBits());
+        return bb.array();
+    }
+
+    public static UUID convertBytesToUUID(byte[] bytes) {
+        ByteBuffer byteBuffer = ByteBuffer.wrap(bytes);
+        long high = byteBuffer.getLong();
+        long low = byteBuffer.getLong();
+        return new UUID(high, low);
+    }
     @Test
     void testSaveUser() {
         UserId id = repository.nextId();

@@ -31,12 +31,13 @@ public class UserServiceImpl implements UserService {
         return repository.save(user); //<.>
     }
 
+    // end::createUser[]
+
     @Override
     public Page<User> getUsers(Pageable pageable) {
         return repository.findAll(pageable);
     }
 
-    // end::createUser[]
 }
 // end::class[]
 

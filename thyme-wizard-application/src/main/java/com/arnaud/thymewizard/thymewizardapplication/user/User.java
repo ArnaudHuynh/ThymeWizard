@@ -1,6 +1,8 @@
 package com.arnaud.thymewizard.thymewizardapplication.user;
 
 import io.github.wimdeblauwe.jpearl.AbstractEntity;
+import io.github.wimdeblauwe.jpearl.AbstractEntityId;
+import io.github.wimdeblauwe.jpearl.AbstractVersionedEntity;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
@@ -11,14 +13,14 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "tt_user")
-public class User {
+public class User extends AbstractVersionedEntity<UserId> {
 
-    @Id
-//    @GeneratedValue(generator = "UUID")
-//    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "id", columnDefinition = "char(26)")
-    @Type(type = "org.hibernate.type.UUIDCharType")
-    private UUID id;
+//    @Id
+////    @GeneratedValue(generator = "UUID")
+////    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+//    @Column(name = "id", columnDefinition = "char(26)")
+//    @Type(type = "org.hibernate.type.UUIDCharType")
+//    private UUID id;
     @NotNull
     private UserName userName;
     @NotNull
@@ -40,7 +42,7 @@ public class User {
                 LocalDate birthday,
                 Email email,
                 PhoneNumber phoneNumber) {
-        this.id = id.getId();
+        super(id);
         this.userName = userName;
         this.gender = gender;
         this.birthday = birthday;
