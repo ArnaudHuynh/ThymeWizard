@@ -1,16 +1,13 @@
 package com.arnaud.thymewizard.thymewizardapplication.user.web;
 
-import com.arnaud.thymewizard.thymewizardapplication.user.Gender;
-import com.arnaud.thymewizard.thymewizardapplication.user.UserService;
+import com.arnaud.thymewizard.thymewizardapplication.user.*;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -53,5 +50,32 @@ public class UserController {
         service.createUser(formData.toParameters()); //<.>
 
         return "redirect:/users"; //<.>
+    }
+
+    @GetMapping("/{id}")
+    public String editUserForm(@PathVariable("id") UserId userId,
+                               Model model) {
+        User user = service.getUser(userId)
+                .orElseThrow(() -> new UserNotFoundException(userId));
+        model.addAttribute("user", EditUserFormData.fromUser(user));
+        model.addAttribute("genders", List.of(Gender.MALE, Gender.FEMALE, Gender.OTHER));
+        model.addAttribute("editMode", EditMode.UPDATE);
+        return "users/edit";
+    }
+
+    @PostMapping("/{id}")
+    public String doEditUser(@PathVariable("id") UserId userId,
+                             @Valid @ModelAttribute("user") EditUserFormData formData,
+                             BindingResult bindingResult,
+                             Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("genders", List.of(Gender.MALE, Gender.FEMALE, Gender.OTHER));
+            model.addAttribute("editMode", EditMode.UPDATE);
+            return "users/edit";
+        }
+
+        service.editUser(userId, formData.toParameters());
+
+        return "redirect:/users";
     }
 }

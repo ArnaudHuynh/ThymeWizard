@@ -1,4 +1,4 @@
-package com.arnaud.thymewizard.thymewizardapplication.controller;
+package com.arnaud.thymewizard.thymewizardapplication.team;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

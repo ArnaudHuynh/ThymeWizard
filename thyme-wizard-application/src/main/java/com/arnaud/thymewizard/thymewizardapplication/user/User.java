@@ -69,4 +69,24 @@ public class User extends AbstractVersionedEntity<UserId> {
     public PhoneNumber getPhoneNumber() {
         return phoneNumber;
     }
+
+    public void setUserName(UserName userName) {
+        this.userName = userName;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
+    }
+
+    public void setEmail(Email email) {
+        this.email = email;
+    }
+
+    public void setPhoneNumber(PhoneNumber phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 }
